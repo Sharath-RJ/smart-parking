@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router()
-const userController= require("../controllers/userController") 
+const locationController= require("../controllers/locationController")
 
-router.get("/update/parking-status")
-router.get("/parking-slots")
+router.get("/update/parking-status", locationController.updateParkingStatus)
+router.get("/parking-slots", locationController.getParkingSlots)
 
 
 module.exports = router
