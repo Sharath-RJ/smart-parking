@@ -2,6 +2,12 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
+const cors = require("cors")
+
+app.use(cors({
+    origin:"*"
+}
+))
 app.use(express.json())
 mongoose
     .connect("mongodb://localhost:27017/smartParking")
