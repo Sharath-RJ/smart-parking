@@ -6,7 +6,7 @@ const Map = () => {
     height: '80vh',
     width: '100%'
   };
-
+  // scms location
   const defaultCenter = {
     lat: 10.269433,
     lng: 76.400251
