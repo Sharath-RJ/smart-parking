@@ -1,4 +1,6 @@
 const LandOwner = require("../models/landOwner")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 const register = async (req, res) => {
     try {
