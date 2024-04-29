@@ -10,7 +10,7 @@ chatSocket.on('connect', () => {
   
   // Send a message to the server
   setTimeout(()=>{
-    chatSocket.emit('parked', 'car num 1 parked');
+    chatSocket.emit('parked', {"data":"yes data"});
   }, 2000)
 });
 // Listen for connection errors
@@ -24,6 +24,6 @@ chatSocket.on('connect_error', (error) => {
   });
 
 // Listen for messages from the server
-chatSocket.on('blink', (msg) => {
+chatSocket.on('reached', (msg) => {
   console.log('Message from server:', msg);
 });

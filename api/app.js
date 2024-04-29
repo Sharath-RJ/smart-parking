@@ -34,8 +34,10 @@ const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
 
-const socketIo = require("socket.io")
+// socket controllers
+const { parked, unparked } = require('./socket-handler/index')
 
+const socketIo = require("socket.io")
 const io = socketIo(server)
 
 const device = io.of('/')
@@ -43,12 +45,14 @@ const device = io.of('/')
 device.on('connection', (socket)=>{
     console.log('connected');
 
-    socket.on('parked',(msg)=>{
-        console.log("parked", msg);
+    socket.on('parked',(deviceId)=>{
+        console.log("parked", deviceId);
+        parked(deviceId, socket)
     })
 
-    socket.on('unparked',(msg)=>{
-        console.log("unparked", msg);
+    socket.on('unparked',(deviceId)=>{
+        console.log("unparked", data);
+        unparked(deviceId, socket)
     })
 
     socket.on('disconnect',()=>{
