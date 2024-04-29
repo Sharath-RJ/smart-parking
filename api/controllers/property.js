@@ -1,17 +1,49 @@
-const Property = require('../models/properties')
+const Property = require("../models/properties")
 
 const getPropertiesByUser = async (req, res) => {
-    
+    try {
+        const userId = req.params.userId // Assuming userId is passed as a parameter
+        const properties = await Property.find({ userId })
+        res.status(200).json({ success: true, properties })
+    } catch (error) {
+        console.error("Error fetching properties:", error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        })
+    }
 }
 
-const addProperties = async (req, res) => {
-    
+const addProperty = async (req, res) => {
+    try {
+        const { userId, propertyName, propertyType } = req.body
+        const newProperty = new Property({ userId, propertyName, propertyType })
+        const savedProperty = await newProperty.save()
+        res.status(201).json({ success: true, property: savedProperty })
+    } catch (error) {
+        console.error("Error adding property:", error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        })
+    }
 }
 
-const deleteProperties = async (req, res) => {
-    
+const deleteProperty = async (req, res) => {
+    try {
+        const propertyId = req.params.propertyId // Assuming propertyId is passed as a parameter
+        await Property.findByIdAndDelete(propertyId)
+        res.status(200).json({
+            success: true,
+            message: "Property deleted successfully",
+        })
+    } catch (error) {
+        console.error("Error deleting property:", error)
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        })
+    }
 }
 
-module.exports = {
-    
-}
+module.exports = { getPropertiesByUser, addProperty, deleteProperty }
