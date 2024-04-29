@@ -16,11 +16,13 @@ const AdminPrivate = () => {
                 setAuth(true)
                 setLandOwner(data.user)
             }catch(error){
-                toast.error(error.response.data.message)
+                setAuth(false)
+                toast.error(error.response && error.response.data.message)
             }
         }
         getUser()
     }, [])
+    console.log(auth);
   return (
     auth ? <Outlet /> : Navigate('/login')
   )

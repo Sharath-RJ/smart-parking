@@ -2,6 +2,14 @@ const LandOwner = require("../models/landOwner")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
+const getLandOwner = async(req, res)=>{
+    const landOwner = req.landOwner;
+
+    if(!landOwner) return res.status(401).json({ success:false,error: "Unauthorized" })
+
+    res.status(200).json({success:true, landOwner:landOwner})
+}
+
 const register = async (req, res) => {
     try {
         const {
@@ -80,4 +88,5 @@ const login = async (req, res) => {
 module.exports = {
     login,
     register,
+    getLandOwner
 }
