@@ -2,6 +2,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
+const socket_app = express()
 const cors = require("cors")
 
 app.use(cors({
@@ -28,17 +29,22 @@ app.use((err, req, res, next) => {
 })
 
 const PORT = 3001
+const SOCKET_PORT = 3002
 
 // use the server instance to create 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
+})
+
+const SOCKET_SERVER = socket_app.listen(SOCKET_PORT, () => {
+    console.log(`Socket server is running on port ${SOCKET_PORT}`);
 })
 
 // socket controllers
 const { parked, unparked } = require('./socket-handler/index')
 
 const socketIo = require("socket.io")
-const io = socketIo(server)
+const io = socketIo(SOCKET_SERVER)
 
 const device = io.of('/')
 
@@ -46,12 +52,10 @@ device.on('connection', (socket)=>{
     console.log('connected');
 
     socket.on('parked',(deviceId)=>{
-        console.log("parked", deviceId);
         parked(deviceId, socket)
     })
 
     socket.on('unparked',(deviceId)=>{
-        console.log("unparked", data);
         unparked(deviceId, socket)
     })
 

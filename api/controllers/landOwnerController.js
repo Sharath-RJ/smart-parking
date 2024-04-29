@@ -32,7 +32,7 @@ const register = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         newLandOwner.password = await bcrypt.hash(password, salt)
         await newLandOwner.save()
-        res.status(200).json({success:true, message:"Login successfull"})
+        res.status(200).json({success:true, message:"Register successfull"})
     } catch (error) {
         console.error("Error registering land owner:", error)
         res.status(500).json({ error: "Failed to register land owner" })
@@ -58,7 +58,7 @@ const login = async (req, res) => {
         }
         jwt.sign(payload, "secret", (err, token) => {
             if (err) throw err
-            res.status(200).json({ success:true, token })
+            res.status(200).json({ success:true, message:"Login successfull", token })
         })
     } catch (error) {
         console.error("Error logging in land owner:", error)

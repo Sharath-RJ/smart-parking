@@ -2,7 +2,7 @@
 const ioClient = require('socket.io-client');
 
 // Connect to the chat namespace on the server
-const chatSocket = ioClient.connect('http://localhost:3001/');
+const chatSocket = ioClient.connect('http://localhost:3002/');
 
 // Listen for connection acknowledgment
 chatSocket.on('connect', () => {
@@ -10,7 +10,7 @@ chatSocket.on('connect', () => {
   
   // Send a message to the server
   setTimeout(()=>{
-    chatSocket.emit('parked', {"data":"yes data"});
+    chatSocket.emit('parked',"661434758418d4a92bedcb41");
   }, 2000)
 });
 // Listen for connection errors

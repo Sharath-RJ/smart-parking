@@ -16,8 +16,8 @@ const getPropertiesByUser = async (req, res) => {
 
 const addProperty = async (req, res) => {
     try {
-        const { userId, propertyName, propertyType } = req.body
-        const newProperty = new Property({ userId, propertyName, propertyType })
+        const { name ,spaceType, spaceAvailable, location } = req.body
+        const newProperty = new Property({ userId:req.landOwner._id, name, spaceType, spaceAvailable, location })
         const savedProperty = await newProperty.save()
         res.status(201).json({ success: true, property: savedProperty })
     } catch (error) {
