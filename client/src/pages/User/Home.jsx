@@ -1,9 +1,11 @@
 import React from 'react'
-
+import Navbar from '../../components/Navbar'
+import Map from '../../components/Map'
 const Home = () => {
   return (
-    <div className=' bg-red-600 text-3xl'>
-      home
+    <div className="">
+      <Navbar />
+      <Map />
     </div>
   )
 }
