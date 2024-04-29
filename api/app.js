@@ -19,11 +19,11 @@ const locationRoute= require("./routes/locationRoute")
 const landOwnerRoute= require("./routes/landOwnerRoute")
 const mapRoute=require("./routes/mapRoute")
 const profileRoute=require("./routes/profileRoute")
-app.use("/api/user", userRoute)
+// app.use("/api/user", userRoute)
 app.use("/api/landOwner",landOwnerRoute)
 app.use("/api/location", locationRoute)
-app.use("/api/map",mapRoute)
-app.use("/api/profile",profileRoute)
+// app.use("/api/map",mapRoute)
+// app.use("/api/profile",profileRoute)
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
@@ -31,6 +31,34 @@ app.use((err, req, res, next) => {
 })
 
 const PORT = 3001
-app.listen(PORT, () => {
+
+// use the server instance to create 
+const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
+})
+
+const socketIo = require("socket.io")
+
+const io = socketIo(server)
+
+const device = io.of('/')
+
+device.on('connection', (socket)=>{
+    console.log('connected');
+
+    socket.on('parked',(msg)=>{
+        console.log("parked", msg);
+    })
+
+    socket.on('unparked',(msg)=>{
+        console.log("unparked", msg);
+    })
+
+    socket.on('disconnect',()=>{
+        console.log('disconnected');
+    })
+
+    setTimeout(()=>{
+        socket.emit('blink', 'Hello from blinki');
+    }, 4000)
 })
