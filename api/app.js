@@ -17,9 +17,11 @@ mongoose
 const userRoute = require("./routes/userRoute")
 const locationRoute= require("./routes/locationRoute")
 const landOwnerRoute= require("./routes/landOwnerRoute")
+const mapRoute=require("./routes/mapRoute")
 app.use("/api/user", userRoute)
 app.use("/api/landOwner",landOwnerRoute)
 app.use("/api/location", locationRoute)
+app.use("/api/map",mapRoute)
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
