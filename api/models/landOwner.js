@@ -1,21 +1,11 @@
 const mongoose = require("mongoose")
 
 const landOwnerSchema = new mongoose.Schema({
-    latitude: Number,
-    longitude: Number,
-    totalSpaceAvailable: Number,
-    ownerName: String,
-    ownerContact: String,
-    locationAddress: String,
-    userName:String,
+    name: String,
     email:String,
     password:String,
-    devices: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Device",
-        },
-    ],
+    ownerContact: String,
+    ownerAddress: String,
 })
 
-module.exports = mongoose.model("landOwner", landOwnerSchema)
+module.exports = mongoose.model("landowner", landOwnerSchema)

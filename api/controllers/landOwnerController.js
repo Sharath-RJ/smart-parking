@@ -13,43 +13,26 @@ const getLandOwner = async(req, res)=>{
 const register = async (req, res) => {
     try {
         const {
-            latitude,
-            longitude,
-            totalSpaceAvailable,
-            ownerName,
-            ownerContact,
-            locationAddress,
-            userName,
+            name,
             email,
             password,
+            ownerContact,
+            ownerAddress
         } = req.body
         let existingLandOwner = await LandOwner.findOne({ email })
         if (existingLandOwner) {
             return res.status(400).json({ error: "Land owner already exists" })
         }
-        const newLandOwner = new LandOwner({
-            latitude,
-            longitude,
-            totalSpaceAvailable,
-            ownerName,
-            ownerContact,
-            locationAddress,
-            userName,
+        const newLandOwner = new LandOwner({            name,
             email,
             password,
+            ownerContact,
+            ownerAddress
         })
         const salt = await bcrypt.genSalt(10)
         newLandOwner.password = await bcrypt.hash(password, salt)
         await newLandOwner.save()
-        const payload = {
-            landOwner: {
-                id: newLandOwner.id,
-            },
-        }
-        jwt.sign(payload, "secret", (err, token) => {
-            if (err) throw err
-            res.json({ token })
-        })
+        res.status(200).json({success:true, message:"Login successfull"})
     } catch (error) {
         console.error("Error registering land owner:", error)
         res.status(500).json({ error: "Failed to register land owner" })
@@ -71,13 +54,11 @@ const login = async (req, res) => {
             return res.status(400).json({ error: "Invalid credentials" })
         }
         const payload = {
-            landOwner: {
-                id: existingLandOwner.id,
-            },
+            _id:existingLandOwner._id
         }
         jwt.sign(payload, "secret", (err, token) => {
             if (err) throw err
-            res.json({ token })
+            res.status(200).json({ success:true, token })
         })
     } catch (error) {
         console.error("Error logging in land owner:", error)
