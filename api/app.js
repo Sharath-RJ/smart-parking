@@ -8,15 +8,19 @@ mongoose
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.error("Could not connect to MongoDB", err))
 
-const routes = require("./routes")
-app.use("/api/user", )
+const userRoute = require("./routes/userRoute")
+const locationRoute= require("./routes/locationRoute")
+const landOwnerRoute= require("./routes/landOwnerRoute")
+app.use("/api/user", userRoute)
+app.use("/api/landOwner",landOwnerRoute)
+app.use("/api/location", locationRoute)
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send("Something broke!")
 })
 
-const PORT = 3000
+const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
