@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom'
 
 const AdminPrivate = () => {
     const bool = localStorage.getItem('token') ? true : false;
-    const [auth, setAuth] = useState(bool);
+    const [auth, setAuth] = useState(true);
     const { setLandOwner } = useLandOwner()
     useEffect(()=>{
         const getUser = async() => {
@@ -16,7 +16,7 @@ const AdminPrivate = () => {
                 setAuth(true)
                 setLandOwner(data.user)
             }catch(error){
-                setAuth(false)
+                // setAuth(false)
                 toast.error(error.response && error.response.data.message)
             }
         }

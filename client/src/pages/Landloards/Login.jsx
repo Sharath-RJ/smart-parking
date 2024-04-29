@@ -2,26 +2,25 @@ import React from 'react'
 
 const Login = () => {
   return (
-    <div className=' h-screen w-screen container flex items-center justify-center'>
-      <form className='form w-84 bg-red-300 h-auto p-4' >
-        <div className="head">
-          <h1>LOGIN FORM</h1>
+   <div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="container max-w-md">
+    <div class="bg-gray-200 rounded-lg shadow-md p-8">
+      <h2 class="text-2xl font-semibold mb-4 text-center">Login</h2>
+      <form>
+        <div class="mb-4">
+          <input type="text" id="username" name="username" placeholder="Username" required class="p-3 border border-gray-300 rounded-md transition duration-300 focus:border-gray-500 focus:outline-none w-full"/>
         </div>
-        <div className="">
-          <label htmlFor="email">
-            name
-          </label>
-          <input className=' w-full border-2 border-black' type="text" id='email' placeholder='name' />
+        <div class="mb-4">
+          <input type="password" id="password" name="password" placeholder="Password" required class="p-3 border border-gray-300 rounded-md transition duration-300 focus:border-gray-500 focus:outline-none w-full"/>
         </div>
-        <div className="">
-          <label htmlFor="password">
-            password
-          </label>
-          <input type="password" id='password' placeholder='password' />
+        <div>
+          <button type="submit" class="bg-gray-700 text-white py-3 px-4 rounded-md transition duration-300 hover:bg-gray-600 w-full">Login</button>
         </div>
-        <button type='submit'>submit</button>
       </form>
     </div>
+  </div>
+</div>
+
   )
 }
 
