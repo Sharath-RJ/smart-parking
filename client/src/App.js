@@ -18,6 +18,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="devices" element={<Devices />} />
         </Route>
+        <Route path="*" element={<>Not found</>} />
       </Routes>
       <ToastContainer position="bottom-center" />
     </div>

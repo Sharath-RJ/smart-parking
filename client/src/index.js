@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.css'
+import 'react-toastify/dist/ReactToastify.css';
 import App from './App';
 import ContextProvider from './context/context';
 import { BrowserRouter } from 'react-router-dom';

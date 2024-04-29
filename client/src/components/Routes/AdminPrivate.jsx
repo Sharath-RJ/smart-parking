@@ -12,7 +12,7 @@ const AdminPrivate = () => {
     useEffect(()=>{
         const getUser = async() => {
             try{
-                const {data} = await API.get('get-landowner')
+                const {data} = await API.get('/landOwner/get-landOwner')
                 setAuth(true)
                 setLandOwner(data.user)
             }catch(error){
@@ -23,9 +23,7 @@ const AdminPrivate = () => {
         getUser()
     }, [])
     console.log(auth);
-  return (
-    auth ? <Outlet /> : Navigate('/login')
-  )
+  return (auth ? <Outlet /> : <Navigate to="/login" />)
 }
 
 export default AdminPrivate
