@@ -9,7 +9,7 @@ mongoose
     .catch((err) => console.error("Could not connect to MongoDB", err))
 
 const routes = require("./routes")
-app.use("/", routes)
+app.use("/api/user", )
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
