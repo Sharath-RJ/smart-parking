@@ -4,7 +4,6 @@ const DeviceSchema = new mongoose.Schema({
      status:{
       type:Boolean,
       default:false,
-      required:true
      },
      label:{
       type:String,
@@ -17,4 +16,4 @@ const DeviceSchema = new mongoose.Schema({
      }
 })
 
-module.exports = mongoose.model("Design", DeviceSchema)
+module.exports = mongoose.model("device", DeviceSchema)

@@ -7,15 +7,16 @@ module.exports = {
             const id = new mongoose.Types.ObjectId(deviceId)
             await Device.findOneAndUpdate({_id:id}, {status: true}, {new: true})
         }catch(error){
-            console.log("some error");
-            console.log(error);
+            console.log("some error ", error);
         }
     },
     unparked:async(deviceId, socket)=>{
         try{
-            await Device.findOneAndUpdate({propertyId:deviceId}, {status: false}, {new: true})
+            const id = new mongoose.Types.ObjectId(deviceId)
+            console.log(id);
+            await Device.findOneAndUpdate({_id:id}, {status: false}, {new: true})
         }catch(error){
-            console.log("some error");
+            console.log("some error ", error);
         }
     }
 }
