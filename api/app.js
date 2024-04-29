@@ -18,10 +18,12 @@ const userRoute = require("./routes/userRoute")
 const locationRoute= require("./routes/locationRoute")
 const landOwnerRoute= require("./routes/landOwnerRoute")
 const mapRoute=require("./routes/mapRoute")
+const profileRoute=require("./routes/profileRoute")
 app.use("/api/user", userRoute)
 app.use("/api/landOwner",landOwnerRoute)
 app.use("/api/location", locationRoute)
 app.use("/api/map",mapRoute)
+app.use("/api/profile",profileRoute)
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
