@@ -5,7 +5,12 @@ const Properties = ()=> {
     return (
         <Layout>
             <div className="container mx-auto px-4 py-8">
-                <h2 className="text-2xl font-semibold mb-4">Devices</h2>
+                <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-2xl font-semibold">Properties</h2>
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Add Property
+                    </button>
+                </div>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full border border-gray-800">
                         <thead>
@@ -33,7 +38,6 @@ const Properties = ()=> {
                                     40
                                 </td>
                             </tr>
-                        
                         </tbody>
                     </table>
                 </div>
