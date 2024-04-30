@@ -4,9 +4,7 @@ const jwt = require('jsonwebtoken')
 const isAuth = async(req, res, next) => {
     try{
         const token = req.headers.authorization.split(" ")[1]
-        console.log(token);
         const decoded = await jwt.verify(token, "secret")
-        console.log("decoded ",decoded);
         const landOwner = await Landonwer.findById(decoded._id).select("-password")
         if(!landOwner) return res.status(404).json({success:false, message:"user not found"})
         req.landOwner = landOwner
