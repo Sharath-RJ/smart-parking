@@ -59,6 +59,7 @@ const Map = () => {
       googleMapsApiKey={process.env.REACT_APP_GMAP_API_KEY}
     >
       <GoogleMap
+       disableDefaultUI={true}
         mapContainerStyle={mapStyles}
         zoom={70}
         center={defaultCenter}

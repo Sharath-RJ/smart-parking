@@ -1,10 +1,24 @@
 import { Link } from "react-router-dom"
 import Layout from "../../components/Admin/Layout"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import API from "../../context/API"
 
 
 const Properties = ()=> {
     const [properties, setProperties] = useState()
+    useEffect(()=>{
+        async function getProperties(){
+            try{
+                const res = await API.get('property/getPropertiesByUser')
+                setProperties(res.data.properties)
+            }catch(error){
+                toast.error(error)
+            }
+        }
+        getProperties()
+    },[])
+    console.log(properties);
     return (
         <Layout>
             <div className="container mx-auto px-4 py-8">
@@ -30,17 +44,22 @@ const Properties = ()=> {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="hover:bg-gray-200 hover:text-gray-800">
-                                <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
-                                    74t349uue0wiw-0
-                                </td>
-                                <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
-                                    web3456
-                                </td>
-                                <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
-                                    40
-                                </td>
-                            </tr>
+                            {properties && properties.map((property)=>{
+                                return (
+                                    
+                                <tr className="hover:bg-gray-200 hover:text-gray-800">
+                                    <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
+                                        {property._id}
+                                    </td>
+                                    <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
+                                        {property.name}
+                                    </td>
+                                    <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
+                                        {property.devices.length}
+                                    </td>
+                                </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>

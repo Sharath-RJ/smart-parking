@@ -34,7 +34,28 @@ const getDevicesByProperty = async()=> {
     }
 }
 
+const getAllUserDevice = async(req, res)=>{
+    try{
+        const userId = req.landOwner._id;
+        console.log(userId);
+        const devices = await Device.find({}).populate({
+            path: "propertyId",
+            match:{
+                userId:userId
+            }
+        })
+        res.status(200).json({success:true, devices})
+    }catch(error){
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+        })
+    }
+}
+
 module.exports = {
     getDevicesByProperty,
     addDevice,
+    getAllUserDevice
 }

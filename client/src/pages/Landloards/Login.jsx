@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import API from '../../context/API'
 import { useNavigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 const Login = () => {
   const navigate = useNavigate()
   const [data, setData] = useState({
@@ -46,6 +46,7 @@ const Login = () => {
         <div>
           <button type="submit" class="bg-gray-700 text-white py-3 px-4 rounded-md transition duration-300 hover:bg-gray-600 w-full">Login</button>
         </div>
+        <Link to='/register'>Dont have an account ? Register</Link>
       </form>
     </div>
   </div>

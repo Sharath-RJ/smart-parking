@@ -3,7 +3,8 @@ const router = express.Router()
 const propertyController = require("../controllers/property")
 const { isAuth } = require("../middlewares/isAuth")
 
-router.get("/getProperty", isAuth, propertyController.getPropertiesByUser)
+// router.get("/getProperty", isAuth, propertyController.getPropertiesByUser)
 router.post("/addProperty", isAuth ,propertyController.addProperty)
 router.get("/getPropertyAndDevices", propertyController.getPropertyAndDevices)
+router.get("/getPropertiesByUser", isAuth, propertyController.getPropertiesByUser)
 module.exports = router

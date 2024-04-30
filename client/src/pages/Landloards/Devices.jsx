@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Admin/Layout'
 import { Link } from 'react-router-dom'
-
+import API from '../../context/API'
+import { toast } from 'react-toastify'
 const Devices = () => {
+    const [data, setData]= useState()
+    useEffect(()=>{
+        async function getDevices(){
+            try{
+                const res = await API.get('device/getDevicesByUser')
+                console.log(res);
+                setData(res.data.devices)
+            }catch(error){
+                console.log(error);
+                toast.error(error)
+            }
+        }
+        getDevices()
+    },[])
+    console.log(data);
   return (
       <Layout>
           <div className="container mx-auto px-4 py-8">
@@ -28,17 +44,21 @@ const Devices = () => {
                           </tr>
                       </thead>
                       <tbody>
-                          <tr className="hover:bg-gray-200 hover:text-gray-800">
-                              <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
-                                  Device 1
-                              </td>
-                              <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
-                                  123456
-                              </td>
-                              <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
-                                  7890
-                              </td>
-                          </tr>
+                          {data && data.map((device, index )=>{
+                              return (
+                                  <tr key={index} className="hover:bg-gray-200 hover:text-gray-800">
+                                      <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
+                                          {device.label}
+                                      </td>
+                                      <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
+                                          {device._id}
+                                      </td>
+                                      <td className="py-2 px-4 border-b border-l border-gray-800 text-center">
+                                          {device.propertyId}
+                                      </td>
+                                  </tr>
+                              )
+                          })}
                           {/* Add more rows with data */}
                       </tbody>
                   </table>

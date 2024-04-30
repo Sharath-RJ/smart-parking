@@ -3,7 +3,7 @@ const Device= require("../models/device")
 
 const getPropertiesByUser = async (req, res) => {
     try {
-        const userId = req.user._id // Assuming userId is passed as a parameter
+        const userId = req.landOwner._id // Assuming userId is passed as a parameter
         const properties = await Property.find({ userId })
         res.status(200).json({ success: true, properties })
     } catch (error) {

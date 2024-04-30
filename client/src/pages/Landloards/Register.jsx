@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import API from '../../context/API'
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import { Link } from 'react-router-dom'
+
 const Register = () => {
     const navigate = useNavigate()
     const [data, setData] = useState({
@@ -128,6 +130,7 @@ const Register = () => {
                             Register
                         </button>
                     </div>
+                    <Link to='/login'>Already have an account ? Login</Link>
                 </form>
             </div>
         </div>
