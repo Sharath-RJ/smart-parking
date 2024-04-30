@@ -1,8 +1,11 @@
 import React from 'react'
 import Sidebar from '../../components/Admin/Sidebar'
 import Layout from '../../components/Admin/Layout'
+import { useLandOwner } from '../../context/context'
 
 const Dashboard = () => {
+    const {landOwner} = useLandOwner()
+    console.log(landOwner);
   return (
     <Layout>
         <div className="flex w-full md:w-3/4">

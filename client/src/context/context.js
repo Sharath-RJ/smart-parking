@@ -3,9 +3,9 @@ import { createContext, useContext, useState } from "react"
 export const context = createContext()
 
 const ContextProvider = ({ children }) => {
-    const [landowner, setLandOwner] = useState({})
+    const [landOwner, setLandOwner] = useState({})
     return (
-        <context.Provider value={{landowner, setLandOwner}}>
+        <context.Provider value={{landOwner, setLandOwner}}>
             {children}
         </context.Provider>
     )

@@ -1,6 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useLandOwner } from '../../context/context'
 const Sidebar = () => {
+    const { setLandOwner } = useLandOwner()
+    const navigate = useNavigate()
+    const logout = ()=> {
+        localStorage.removeItem('token')
+        setLandOwner(null)
+        navigate('/login')
+    }
   return (
     <div className="w-1/4 h-screen">
     <div className="bg-gray-800 text-gray-100 h-full w-64 fixed overflow-y-auto">
@@ -30,7 +38,7 @@ const Sidebar = () => {
             </ul>
             {/* Logout Button */}
             <div className="mt-8">
-                <button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
+                <button onClick={logout} className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">
                     Logout
                 </button>
             </div>

@@ -18,7 +18,7 @@ const DeviceAdd = () => {
                         <input
                             type="text"
                             id="propertyName"
-                            name="propertyName"
+                            name="name"
                             class="form-field shadow-sm mt-1 border-2 block w-full rounded-md border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200"
                         />
                     </div>

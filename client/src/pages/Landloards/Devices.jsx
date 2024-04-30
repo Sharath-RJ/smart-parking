@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '../../components/Admin/Layout'
+import { Link } from 'react-router-dom'
 
 const Devices = () => {
   return (
@@ -7,9 +8,9 @@ const Devices = () => {
           <div className="container mx-auto px-4 py-8">
               <div className="flex items-center justify-between mb-4">
                   <h2 className="text-2xl font-semibold">Devices</h2>
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                  <Link to="/dashboard/addDevice"><button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                       Add Device
-                  </button>
+                  </button></Link>
               </div>
               <div className="overflow-x-auto">
                   <table className="table-auto w-full border border-gray-800">

@@ -1,7 +1,30 @@
-import React from "react"
+import React, { useState } from "react"
+import API from '../../context/API'
+import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 const Register = () => {
-    const register = (e)=> {
+    const navigate = useNavigate()
+    const [data, setData] = useState({
+        name:"",
+        email:"",
+        password:"",
+        ownerContact:"",
+        ownerAddress:""
+    })
+    const on_change = (e) => {
+        const { name, value } = e.target
+        setData((prev) => ({ ...prev, [name]: value }))
+    }
+    const register = async(e)=> {
         e.preventDefault()
+        console.log('submitting ',data);
+        try{
+            await API.post('/landOwner/register', data)
+            toast.success("registration successfull")
+            navigate('/login')
+        }catch(error){
+            toast.error(error)
+        }
     }
     return (
         <div className=" bg-blue-200 p-8 rounded-lg shadow-lg ">
@@ -19,6 +42,8 @@ const Register = () => {
                                 Name
                             </label>
                             <input
+                                onChange={on_change}
+                                value={data.name}
                                 type="text"
                                 name="name"
                                 id="ownerName"
@@ -34,6 +59,8 @@ const Register = () => {
                                 Contact
                             </label>
                             <input
+                                onChange={on_change}
+                                value={data.ownerContact}
                                 type="text"
                                 name="ownerContact"
                                 id="ownerName"
@@ -49,6 +76,8 @@ const Register = () => {
                                 Address
                             </label>
                             <input
+                                onChange={on_change}
+                                value={data.ownerAddress}
                                 type="text"
                                 name="ownerAddress"
                                 id="locationAddress"
@@ -64,6 +93,8 @@ const Register = () => {
                                 Email
                             </label>
                             <input
+                                onChange={on_change}
+                                value={data.email}
                                 type="text"
                                 name="email"
                                 id="email"
@@ -78,7 +109,9 @@ const Register = () => {
                             >
                                 password
                             </label>
-                            <input
+                            <input                                
+                            onChange={on_change}
+                                value={data.password}
                                 type="text"
                                 name="password"
                                 id="password"
