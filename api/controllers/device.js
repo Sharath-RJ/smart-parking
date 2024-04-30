@@ -1,3 +1,4 @@
+const device = require('../models/device')
 const Device = require('../models/device')
 const Property = require('../models/properties')
 
@@ -43,6 +44,10 @@ const getAllUserDevice = async(req, res)=>{
             match:{
                 userId:userId
             }
+        })
+        console.log(devices);
+        const data = devices.map((device)=>{
+            // if(device.Property)
         })
         res.status(200).json({success:true, devices})
     }catch(error){
