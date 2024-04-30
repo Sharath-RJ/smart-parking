@@ -17,6 +17,12 @@ const propertySchema = mongoose.Schema({
         type:Number,
         required:true
     },
+    devices:[
+        {
+            type:mongoose.Types.ObjectId,
+            ref:"device"
+        }
+    ],
     location: {
         type: {
           type: String, // Don't forget to specify the type as "Point"

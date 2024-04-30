@@ -2,7 +2,7 @@ const Property = require("../models/properties")
 
 const getPropertiesByUser = async (req, res) => {
     try {
-        const userId = req.params.userId // Assuming userId is passed as a parameter
+        const userId = req.user._id // Assuming userId is passed as a parameter
         const properties = await Property.find({ userId })
         res.status(200).json({ success: true, properties })
     } catch (error) {
@@ -16,14 +16,14 @@ const getPropertiesByUser = async (req, res) => {
 
 const addProperty = async (req, res) => {
     try {
-        const { name ,spaceType, spaceAvailable, location } = req.body
+        const { name ,spaceType, spaceAvailable, longitude, latitude } = req.body
         const newProperty = new Property({ userId:req.landOwner._id, 
             userId:req.landOwner._id,
             name, spaceType, 
             spaceAvailable, 
             location:{
                 type:"Point",
-                coordinates:[location.longitude, location.latitude]
+                coordinates:[longitude, latitude]
             }  
         })
         const savedProperty = await newProperty.save()

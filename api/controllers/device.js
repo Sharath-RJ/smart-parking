@@ -1,4 +1,5 @@
 const Device = require('../models/device')
+const Property = require('../models/properties')
 
 const addDevice = async (req, res) => {
     try {
@@ -8,6 +9,7 @@ const addDevice = async (req, res) => {
             propertyId
         })
         const savedDevice = await newDevice.save()
+        await Property.findByIdAndUpdate(propertyId, { $push: { devices: savedDevice._id } })
         res.status(201).json({ success: true, device: savedDevice })
     } catch (error) {
         console.error("Error adding device:", error)

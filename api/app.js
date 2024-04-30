@@ -1,4 +1,3 @@
-
 const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
@@ -16,15 +15,16 @@ mongoose
     .catch((err) => console.error("Could not connect to MongoDB", err))
 
 
-const locationRoute= require("./routes/locationRoute")
 const landOwnerRoute= require("./routes/landOwnerRoute")
 const propertyRoute = require("./routes/propertyRoute")
 const deviceRoute = require("./routes/device")
+const locationRoute = require('./routes/locationRoute')
 
 app.use("/api/landOwner",landOwnerRoute)
 app.use("/api/location", locationRoute)
 app.use("/api/property", propertyRoute)
 app.use("/api/device",deviceRoute)
+app.use("/api/location", locationRoute)
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
@@ -38,37 +38,22 @@ const SOCKET_PORT = 3002
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
+const aedes = require('aedes');
+const mqttServer = aedes();
 
-const SOCKET_SERVER = socket_app.listen(SOCKET_PORT, () => {
-    console.log(`Socket server is running on port ${SOCKET_PORT}`);
-})
+// Attach MQTT server to Express server
+const mqttListener = require('net').createServer(mqttServer.handle);
+mqttListener.listen(1883, () => {
+    console.log('MQTT server is running on port 1883');
+});
+mqttServer.on('client', (client) => {
+    console.log('Client connected:', client.id);
+});
 
-// socket controllers
-const { parked, unparked } = require('./socket-handler/index')
+mqttServer.on('clientDisconnect', (client) => {
+    console.log('Client disconnected:', client.id);
+});
 
-const socketIo = require("socket.io")
-const io = socketIo(SOCKET_SERVER)
-
-const device = io.of('/')
-
-device.on('connection', (socket)=>{
-    console.log('connected');
-
-    socket.on('parked',(deviceId)=>{
-        console.log('parked ',deviceId);
-        parked(deviceId, socket)
-    })
-
-    socket.on('unparked',(deviceId)=>{
-        console.log('unparked ',deviceId);
-        unparked(deviceId, socket)
-    })
-
-    socket.on('disconnect',()=>{
-        console.log('disconnected');
-    })
-
-    setTimeout(()=>{
-        socket.emit('blink', 'Hello from blinki');
-    }, 4000)
-})
+mqttServer.on('publish', (packet, client) => {
+    console.log('Message received:', packet.payload.toString());
+});

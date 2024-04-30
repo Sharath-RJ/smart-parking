@@ -10,7 +10,7 @@ chatSocket.on('connect', () => {
   
   // Send a message to the server
   setTimeout(()=>{
-    chatSocket.emit('parked',"663038fd6f6ddf565438ab5a");
+    chatSocket.emit('event_name',"you got it");
   }, 2000)
 });
 // Listen for connection errors

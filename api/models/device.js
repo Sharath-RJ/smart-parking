@@ -11,7 +11,7 @@ const DeviceSchema = new mongoose.Schema({
      },
      propertyId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"properties",
+        ref:"property",
         required:true
      }
 })
