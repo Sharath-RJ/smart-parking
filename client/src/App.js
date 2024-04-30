@@ -16,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<AdminPrivate />}>
           <Route index element={<Dashboard />} />
+          <Route path="properties" element={<Dashboard />} />
           <Route path="devices" element={<Devices />} />
         </Route>
         <Route path="*" element={<>Not found</>} />

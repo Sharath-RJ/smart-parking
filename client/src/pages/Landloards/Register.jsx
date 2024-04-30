@@ -1,5 +1,4 @@
 import React from "react"
-
 const Register = () => {
     return (
         <div className=" bg-blue-200 p-8 rounded-lg shadow-lg ">
