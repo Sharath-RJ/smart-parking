@@ -43,6 +43,8 @@ const mqttServer = aedes();
 
 // Attach MQTT server to Express server
 const mqttListener = require('net').createServer(mqttServer.handle);
+const mqtthandler = require('./mqtthandlers/mqtthandler')
+
 mqttListener.listen(1883, () => {
     console.log('MQTT server is running on port 1883');
 });
@@ -56,4 +58,5 @@ mqttServer.on('clientDisconnect', (client) => {
 
 mqttServer.on('publish', (packet, client) => {
     console.log('Message received:', packet.payload.toString());
+    mqtthandler(packet.payload.toString())
 });
