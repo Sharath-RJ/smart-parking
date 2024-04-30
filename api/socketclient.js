@@ -6,11 +6,11 @@ const chatSocket = ioClient.connect('http://localhost:3002/');
 
 // Listen for connection acknowledgment
 chatSocket.on('connect', () => {
-  console.log('Connected to chat namespace');
+  console.log('Connected to socket server');
   
   // Send a message to the server
   setTimeout(()=>{
-    chatSocket.emit('unparked',"663005fc8881560001e65c2c");
+    chatSocket.emit('parked',"663039666f6ddf565438ab63");
   }, 2000)
 });
 // Listen for connection errors

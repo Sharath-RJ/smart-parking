@@ -17,9 +17,6 @@ const getPropertiesByUser = async (req, res) => {
 const addProperty = async (req, res) => {
     try {
         const { name ,spaceType, spaceAvailable, location } = req.body
-<<<<<<< HEAD
-        const newProperty = new Property({ userId:req.landOwner._id, name, spaceType, spaceAvailable, location })
-=======
         const newProperty = new Property({ userId:req.landOwner._id, 
             userId:req.landOwner._id,
             name, spaceType, 
@@ -29,7 +26,6 @@ const addProperty = async (req, res) => {
                 coordinates:[location.longitude, location.latitude]
             }  
         })
->>>>>>> 0cf0452 (server and socket version 1)
         const savedProperty = await newProperty.save()
         res.status(201).json({ success: true, property: savedProperty })
     } catch (error) {

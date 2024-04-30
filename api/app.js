@@ -18,10 +18,13 @@ mongoose
 
 const locationRoute= require("./routes/locationRoute")
 const landOwnerRoute= require("./routes/landOwnerRoute")
+const propertyRoute = require("./routes/propertyRoute")
+const deviceRoute = require("./routes/device")
 
 app.use("/api/landOwner",landOwnerRoute)
 app.use("/api/location", locationRoute)
-
+app.use("/api/property", propertyRoute)
+app.use("/api/device",deviceRoute)
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
