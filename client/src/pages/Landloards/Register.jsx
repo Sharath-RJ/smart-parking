@@ -1,58 +1,16 @@
 import React from "react"
 const Register = () => {
+    const register = (e)=> {
+        e.preventDefault()
+    }
     return (
         <div className=" bg-blue-200 p-8 rounded-lg shadow-lg ">
             <div className=" bg-white w-4/6 rounded-sm mx-auto my-4 p-8">
                 <h2 className="text-2xl font-semibold mb-4 text-center">
                     Registration Form
                 </h2>
-                <form>
+                <form onSubmit={register}>
                     <div className="grid grid-cols gap-4">
-                        <div className="col-span-3 sm:col-span-1">
-                            <label
-                                for="latiude"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Latitude
-                            </label>
-                            <input
-                                type="text"
-                                name="latitude"
-                                id="latitude"
-                                autocomplete="given-name"
-                                className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            />
-                        </div>
-                        <div className="col-span-3 sm:col-span-1">
-                            <label
-                                for="longitude"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                longitude
-                            </label>
-                            <input
-                                type="text"
-                                name="longitude"
-                                id="longitude"
-                                autocomplete="family-name"
-                                className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            />
-                        </div>
-                        <div className="col-span-3 sm:col-span-1">
-                            <label
-                                for="totalSpaceAvailable"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                totalSpaceAvailable
-                            </label>
-                            <input
-                                type="text"
-                                name="totalSpaceAvailable"
-                                id="totalSpaceAvailable"
-                                autocomplete="totalSpaceAvailable"
-                                className="mt-1 border-2 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            />
-                        </div>
                         <div className="col-span-3 sm:col-span-1">
                             <label
                                 for="ownerName"
@@ -62,7 +20,7 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
-                                name="ownerName"
+                                name="name"
                                 id="ownerName"
                                 autocomplete="ownerName"
                                 className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -77,7 +35,7 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
-                                name="ownerName"
+                                name="ownerContact"
                                 id="ownerName"
                                 autocomplete="ownerName"
                                 className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -92,25 +50,10 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
-                                name="locationAddress"
+                                name="ownerAddress"
                                 id="locationAddress"
                                 autocomplete="locationAddress"
                                 className="mt-1 p-2 border-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            />
-                        </div>
-                        <div className="col-span-3 sm:col-span-1">
-                            <label
-                                for="userName"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                userName
-                            </label>
-                            <input
-                                type="text"
-                                name="userName"
-                                id="userName"
-                                autocomplete="userName"
-                                className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             />
                         </div>
                         <div className="col-span-3 sm:col-span-1">
@@ -124,6 +67,21 @@ const Register = () => {
                                 type="text"
                                 name="email"
                                 id="email"
+                                autocomplete="email"
+                                className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            />
+                        </div>
+                        <div className="col-span-3 sm:col-span-1">
+                            <label
+                                for="password"
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                password
+                            </label>
+                            <input
+                                type="text"
+                                name="password"
+                                id="password"
                                 autocomplete="email"
                                 className="mt-1 p-2 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                             />

@@ -55,10 +55,12 @@ device.on('connection', (socket)=>{
     console.log('connected');
 
     socket.on('parked',(deviceId)=>{
+        console.log('parked ',deviceId);
         parked(deviceId, socket)
     })
 
     socket.on('unparked',(deviceId)=>{
+        console.log('unparked ',deviceId);
         unparked(deviceId, socket)
     })
 
